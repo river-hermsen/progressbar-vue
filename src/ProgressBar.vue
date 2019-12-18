@@ -1,10 +1,10 @@
-<template>
+  <template>
   <div>
-    <div
-      id="progressbar"
-      v-bind:style="{ width: progressPercentage + '%', backgroundColor: color }"
-      :class="{ 'no-display': noDisplay }"
-    ></div>
+    <div v-if="bar">
+      <div id="progressbar" v-bind:style="bar.styles" :class="{ 'no-display': bar.noDisplay }"></div>
+      percantage: {{bar.progressPercentage}}
+      noDisplay: {{bar.noDisplay}}
+    </div>
     <button @click="start()">START LOADING</button>
     <button @click="increaseBy10()">INCREASE 10%</button>
     <button @click="decreaseBy10()">DECREASE 10%</button>
@@ -15,7 +15,7 @@
   </div>
 </template>
 
-<style>
+  <style>
 body {
   margin: unset;
 }
@@ -34,67 +34,61 @@ button {
 }
 </style>
 
-<script>
+  <script>
 /* eslint-disable no-console */
-
 export default {
   data() {
     return {
-      color: "blue",
-      noDisplay: true,
-      progressPercentage: 1,
-      intervalFunc: {},
-      isFailed: false,
-      isFinished: false
+      bar: window.busProgressBar
     };
   },
   methods: {
     start() {
-      this.color = "blue";
-      this.isFinished = false;
-      this.isFailed = false;
-      this.progressPercentage = 1;
-      this.noDisplay = false;
+      this.bar.color = "blue";
+      this.bar.isFinished = false;
+      this.bar.isFailed = false;
+      this.bar.progressPercentage = 1;
+      this.bar.noDisplay = false;
     },
     increaseBy10() {
       console.log(window);
 
-      this.progressPercentage += 10;
+      this.bar.progressPercentage += 10;
     },
     decreaseBy10() {
-      this.progressPercentage -= 10;
+      this.bar.progressPercentage -= 10;
     },
     update(percentage) {
-      this.progressPercentage = percentage;
+      this.bar.progressPercentage = percentage;
     },
     fail() {
-      this.isFailed = true;
+      this.bar.isFailed = true;
     },
     finish() {
       console.log("finshed");
-      this.isFinished = true;
-      this.progressPercentage = 100;
-      clearInterval(this.intervalFunc);
+      this.bar.isFinished = true;
+      this.bar.progressPercentage = 100;
+      clearInterval(this.bar.intervalFunc);
     }
   },
   watch: {
     progressPercentage() {
-      if (this.progressPercentage <= 0) {
-        this.progressPercentage = 0;
-      } else if (this.progressPercentage >= 95 && !this.isFinished) {
-        this.progressPercentage = 95;
-      } else if (this.progressPercentage >= 100) {
-        this.progressPercentage = 100;
+      if (this.bar.progressPercentage <= 0) {
+        this.bar.progressPercentage = 0;
+      } else if (this.bar.progressPercentage >= 95 && !this.bar.isFinished) {
+        this.bar.progressPercentage = 95;
+      } else if (this.bar.progressPercentage >= 100) {
+        this.bar.progressPercentage = 100;
         setTimeout(() => {
-          this.noDisplay = true;
+          this.bar.noDisplay = true;
         }, 1500);
       }
       let spanDisplay = this.$refs.percentageDisplay;
       spanDisplay.innerHTML = this.progressPercentage;
     },
     noDisplay() {
-      var self = this;
-      if (!this.noDisplay) {
+      var self = this.bar;
+      if (!this.bar.noDisplay) {
         self.intervalFunc = setInterval(function() {
           if (self.progressPercentage < 100) {
             self.progressPercentage += 3;
@@ -103,9 +97,9 @@ export default {
       }
     },
     isFailed() {
-      if (this.isFailed) {
-        this.color = "red";
-        this.finish();
+      if (this.bar.isFailed) {
+        this.bar.color = "red";
+        this.bar.finish();
       }
     }
   }

@@ -20,9 +20,9 @@ function install(Vue, options = {}) {
             intervalFunc: {},
             isFailed: false,
             isFinished: false,
+            failedColor: optionsBar.styles.failedColor,
             styles: {
                 color: optionsBar.styles.color,
-                failedColor: optionsBar.styles.failedColor,
                 height: optionsBar.styles.width
             }
         }

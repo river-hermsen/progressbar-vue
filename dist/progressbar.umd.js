@@ -31,7 +31,6 @@
   //
   //
 
-  /* eslint-disable no-console */
   var script = {
     data: function data() {
       return {
@@ -185,7 +184,7 @@
     /* style */
     var __vue_inject_styles__ = function (inject) {
       if (!inject) { return }
-      inject("data-v-5aa4d3ec_0", { source: "body{margin:unset}#progressbar{top:0;transition:width .3s linear}.no-display{display:none}button{margin-top:50px}", map: undefined, media: undefined });
+      inject("data-v-45ae24f8_0", { source: "body{margin:unset}#progressbar{top:0;transition:width .3s linear}.no-display{display:none}button{margin-top:50px}", map: undefined, media: undefined });
 
     };
     /* scoped */
@@ -215,11 +214,11 @@
 
       var optionsBar = {
           styles: {
-              color: options.styles.color || 'blue',
+              color: options.styles ? options.styles.color : 'blue',
               backgroundColor: '',
-              failedColor: options.styles.failedColor || 'red',
-              width: options.styles.width || '2px',
-              position: options.position || 'fixed'
+              failedColor: options.styles ? options.styles.failedColor : 'red',
+              width: options.styles ? options.styles.width : '2px',
+              position: options.styles ? options.position : 'fixed'
           },
           msBeforeDisappear: options.msBeforeDisappear || 1500,
           autoFinish: options.autoFinish || false,

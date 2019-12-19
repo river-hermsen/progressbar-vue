@@ -4,11 +4,11 @@ function install(Vue, options = {}) {
 
     const optionsBar = {
         styles: {
-            color: options.styles.color || 'blue',
+            color: options.styles ? options.styles.color : 'blue',
             backgroundColor: '',
-            failedColor: options.styles.failedColor || 'red',
-            width: options.styles.width || '2px',
-            position: options.position || 'fixed'
+            failedColor: options.styles ? options.styles.failedColor : 'red',
+            width: options.styles ? options.styles.width : '2px',
+            position: options.styles ? options.position : 'fixed'
         },
         msBeforeDisappear: options.msBeforeDisappear || 1500,
         autoFinish: options.autoFinish || false,

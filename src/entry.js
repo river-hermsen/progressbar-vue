@@ -5,10 +5,12 @@ function install(Vue, options = {}) {
     const optionsBar = {
         styles: {
             color: options.styles.color || 'blue',
+            backgroundColor: '',
             failedColor: options.styles.failedColor || 'red',
-            width: options.styles.width || 2px
+            width: options.styles.width || '2px'
         },
-        msBeforeDisappear: options.msBeforeDisappear || 1500
+        msBeforeDisappear: options.msBeforeDisappear || 1500,
+        autoFinish: options.autoFinish || false
     }
     console.log(options);
     console.log(optionsBar);
@@ -20,10 +22,15 @@ function install(Vue, options = {}) {
             intervalFunc: {},
             isFailed: false,
             isFinished: false,
-            failedColor: optionsBar.styles.failedColor,
-            styles: {
-                color: optionsBar.styles.color,
-                height: optionsBar.styles.width
+            failedColor: optionsBar.styles.failedColor
+        },
+        computed: {
+            getStyles() {
+                return {
+                    width: this.progressPercentage + '%',
+                    backgroundColor: optionsBar.styles.backgroundColor,
+                    height: optionsBar.styles.width
+                }
             }
         }
     })
@@ -32,33 +39,48 @@ function install(Vue, options = {}) {
         $v: null,
         intervalFunc: {},
         start() {
-            console.log('starting...');
-
+            clearInterval(this.intervalFunc);
+            clearTimeout(this.timeOutNoDisplay);
             this.$v.isFinished = false;
             this.$v.isFailed = false;
-            this.$v.color = 'blue';
-            this.$v.progressPercentage = 2;
+            this.$v.color = optionsBar.styles.color;
+            optionsBar.styles.backgroundColor = optionsBar.styles.color;
+            this.$v.progressPercentage = 1;
             this.$v.noDisplay = false;
             this.intervalFunc = setInterval(() => {
                 console.log('intervalling');
-
-                if (this.$v.progressPercentage <= 95 && !this.$v.isFinished) {
-                    this.$v.progressPercentage += 3;
+                if (optionsBar.autoFinish) {
+                    if (this.$v.progressPercentage >= 100) {
+                        console.log('autofinsih');
+                        this.finish();
+                    } else {
+                        this.$v.progressPercentage += 3;
+                    }
+                } else {
+                    if (this.$v.progressPercentage < 94 && !this.$v.isFinished) {
+                        this.$v.progressPercentage += 3;
+                    }
                 }
             }, 130);
         },
+        update(percentage) {
+            if (!this.$v.isFinished) {
+                this.$v.progressPercentage = percentage;
+            } else {
+                return undefined;
+            }
+        },
         fail() {
             this.$v.isFailed = true;
-            this.$v.color = 'red'
+            optionsBar.styles.backgroundColor = optionsBar.styles.failedColor;
+            this.$v.color = optionsBar.styles.failedColor;
             this.finish();
         },
         finish() {
-            console.log("finshed");
-
             this.$v.progressPercentage = 100;
             this.$v.isFinished = true;
             clearInterval(this.intervalFunc);
-            setTimeout(() => {
+            this.timeOutNoDisplay = setTimeout(() => {
                 this.$v.noDisplay = true;
             }, optionsBar.msBeforeDisappear);
         },
@@ -72,7 +94,6 @@ function install(Vue, options = {}) {
     // install.installed = true;
     Vue.component("progress-bar", ProgressBar);
 }
-
 const plugin = {
     install
 };

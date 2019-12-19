@@ -7,10 +7,11 @@ function install(Vue, options = {}) {
             color: options.styles.color || 'blue',
             backgroundColor: '',
             failedColor: options.styles.failedColor || 'red',
-            width: options.styles.width || '2px'
+            width: options.styles.width || '2px',
+            position: options.position || 'fixed'
         },
         msBeforeDisappear: options.msBeforeDisappear || 1500,
-        autoFinish: options.autoFinish || false
+        autoFinish: options.autoFinish || false,
     }
     console.log(options);
     console.log(optionsBar);
@@ -29,7 +30,8 @@ function install(Vue, options = {}) {
                 return {
                     width: this.progressPercentage + '%',
                     backgroundColor: optionsBar.styles.backgroundColor,
-                    height: optionsBar.styles.width
+                    height: optionsBar.styles.width,
+                    position: optionsBar.styles.position
                 }
             }
         }

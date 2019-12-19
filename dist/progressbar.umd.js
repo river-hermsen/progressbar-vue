@@ -30,7 +30,6 @@
   //
   //
   //
-  //
 
   /* eslint-disable no-console */
   var script = {
@@ -186,7 +185,7 @@
     /* style */
     var __vue_inject_styles__ = function (inject) {
       if (!inject) { return }
-      inject("data-v-b44af50c_0", { source: "body{margin:unset}#progressbar{position:absolute;top:0;transition:width .3s linear}.no-display{display:none}button{margin-top:50px}", map: undefined, media: undefined });
+      inject("data-v-5aa4d3ec_0", { source: "body{margin:unset}#progressbar{top:0;transition:width .3s linear}.no-display{display:none}button{margin-top:50px}", map: undefined, media: undefined });
 
     };
     /* scoped */
@@ -219,10 +218,11 @@
               color: options.styles.color || 'blue',
               backgroundColor: '',
               failedColor: options.styles.failedColor || 'red',
-              width: options.styles.width || '2px'
+              width: options.styles.width || '2px',
+              position: options.position || 'fixed'
           },
           msBeforeDisappear: options.msBeforeDisappear || 1500,
-          autoFinish: options.autoFinish || false
+          autoFinish: options.autoFinish || false,
       };
       console.log(options);
       console.log(optionsBar);
@@ -241,7 +241,8 @@
                   return {
                       width: this.progressPercentage + '%',
                       backgroundColor: optionsBar.styles.backgroundColor,
-                      height: optionsBar.styles.width
+                      height: optionsBar.styles.width,
+                      position: optionsBar.styles.position
                   }
               }
           }

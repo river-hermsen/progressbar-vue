@@ -13,7 +13,6 @@ body {
   margin: unset;
 }
 #progressbar {
-  position: absolute;
   top: 0;
   transition: width 0.3s linear;
 }

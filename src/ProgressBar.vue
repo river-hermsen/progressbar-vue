@@ -2,8 +2,6 @@
   <div>
     <div v-if="bar">
       <div id="progressbar" v-bind:style="bar.getStyles" :class="{ 'no-display': bar.noDisplay }"></div>
-      percantage: {{bar.progressPercentage}}
-      noDisplay: {{bar.noDisplay}}
     </div>
   </div>
 </template>
@@ -18,9 +16,6 @@ body {
 }
 .no-display {
   display: none;
-}
-button {
-  margin-top: 50px;
 }
 </style>
 

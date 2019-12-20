@@ -25,11 +25,6 @@
   //
   //
   //
-  //
-  //
-  //
-  //
-  //
 
   var script = {
     data: function data() {
@@ -178,13 +173,13 @@
   var __vue_script__ = script;
 
   /* template */
-  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[(_vm.bar)?_c('div',[_c('div',{class:{ 'no-display': _vm.bar.noDisplay },style:(_vm.bar.getStyles),attrs:{"id":"progressbar"}}),_vm._v("\n    percantage: "+_vm._s(_vm.bar.progressPercentage)+"\n    noDisplay: "+_vm._s(_vm.bar.noDisplay)+"\n  ")]):_vm._e()])};
+  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[(_vm.bar)?_c('div',[_c('div',{class:{ 'no-display': _vm.bar.noDisplay },style:(_vm.bar.getStyles),attrs:{"id":"progressbar"}})]):_vm._e()])};
   var __vue_staticRenderFns__ = [];
 
     /* style */
     var __vue_inject_styles__ = function (inject) {
       if (!inject) { return }
-      inject("data-v-45ae24f8_0", { source: "body{margin:unset}#progressbar{top:0;transition:width .3s linear}.no-display{display:none}button{margin-top:50px}", map: undefined, media: undefined });
+      inject("data-v-23c1dd90_0", { source: "body{margin:unset}#progressbar{top:0;transition:width .3s linear}.no-display{display:none}", map: undefined, media: undefined });
 
     };
     /* scoped */

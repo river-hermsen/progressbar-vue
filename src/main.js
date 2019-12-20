@@ -1,8 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
 import ProgressBar from 'progressbar-vue'
-
-Vue.use(ProgressBar)
+const options = {
+  styles: {
+    width: '5px',
+    color: 'blue'
+  }
+}
+Vue.use(ProgressBar, options)
 
 Vue.config.productionTip = false
 

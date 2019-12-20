@@ -1,13 +1,16 @@
 import Vue from 'vue'
 import App from './App.vue'
-import ProgressBar from 'progressbar-vue'
-const options = {
-  styles: {
-    width: '5px',
-    color: 'blue'
-  }
-}
-Vue.use(ProgressBar, options)
+import AtComponents from 'at-ui'
+import 'at-ui-style' // Import CSS
+
+// const options = {
+//   styles: {
+//     width: '5px',
+//     color: 'blue'
+//   }
+// }
+
+Vue.use(AtComponents)
 
 Vue.config.productionTip = false
 

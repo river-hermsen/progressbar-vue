@@ -1,2 +1,2 @@
 # progressbar-vue
-A simple and (really) lightweight VueJS progress bar.
+A simple and lightweight VueJS progress bar.
